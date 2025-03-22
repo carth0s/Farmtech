@@ -1,24 +1,22 @@
-import math  # Para cálculos matemáticos
+import math
 
-# Listas para armazenar os dados
-culturas = []  # Nome das culturas
-areas = []  # Áreas das culturas
-insumos = []  # Tipos de insumos
-taxa_aplicacao = []  # Taxa de aplicação (mL/m²)
+culturas = []
+areas = []
+insumos = []
+taxa_aplicacao = []
 
 while True:
     print("\n------- GESTÃO AGRÍCOLA FARMTECH 2025® -------")
-    print("1 - Selecionar Cultura")
+    print("1 - Selecionar cultura")
     print("2 - Exibir culturas adicionadas")
     print("3 - Atualizar informações")
     print("4 - Excluir dados")
-    print("6 - Sair do programa")
-    print("----------------------------------")
+    print("5 - Sair do programa")
+    print("----------------------------------------------")
 
     opcao = input("\n- Escolha uma opção: ")
 
     if opcao == "1":
-        # Selecionar Cultura
         while True:
             cultura_escolhida = input("Selecione a cultura (A - Arroz, F - Feijão): ").strip().upper()
             if cultura_escolhida == "A":
@@ -36,46 +34,43 @@ while True:
         print("3 - Trapézio")
         tipo_area = input("Digite o número correspondente: ")
 
-        if tipo_area == "1":  # Retângulo
+        if tipo_area == "1":
             largura = float(input("Digite a largura do terreno (m): "))
             comprimento = float(input("Digite o comprimento do terreno (m): "))
-            area = largura * comprimento  # Cálculo da área do retângulo
-        elif tipo_area == "2":  # Círculo
+            area = largura * comprimento
+        elif tipo_area == "2":
             raio = float(input("Digite o raio do terreno (m): "))
-            area = math.pi * (raio ** 2)  # Cálculo da área do círculo
-        elif tipo_area == "3":  # Trapézio
+            area = math.pi * (raio ** 2)
+        elif tipo_area == "3":
             base_maior = float(input("Digite a base maior (m): "))
             base_menor = float(input("Digite a base menor (m): "))
             altura = float(input("Digite a altura (m): "))
-            area = ((base_maior + base_menor) * altura) / 2  # Cálculo da área do trapézio
+            area = ((base_maior + base_menor) * altura) / 2
         else:
             print("Opção inválida! Usando área 0.")
-            area = 0  # Caso o usuário escolha uma opção inválida
+            area = 0
 
-        # Seleção do insumo
         while True:
             insumo_escolhido = input(
                 "Escolha o insumo a ser utilizado (F - Fertilizante, P - Pesticida): ").strip().upper()
             if insumo_escolhido == "F":
                 insumo = "Fertilizante"
-                aplicacao_por_m2 = 500  # 500 mL/m² para fertilizante
+                aplicacao_por_m2 = 500
                 break
             elif insumo_escolhido == "P":
                 insumo = "Pesticida"
-                aplicacao_por_m2 = 250  # 250 mL/m² para pesticida
+                aplicacao_por_m2 = 250
                 break
             else:
                 print("Opção inválida! Escolha F para Fertilizante ou P para Pesticida.")
 
-        aplicacao_total = area * aplicacao_por_m2  # Cálculo da aplicação total
+        aplicacao_total = area * aplicacao_por_m2
 
-        # Armazenar os dados nas listas
         culturas.append(cultura)
         areas.append(area)
         insumos.append(insumo)
         taxa_aplicacao.append(aplicacao_total)
 
-        # Mostrar a confirmação com aplicação em litros e a descrição do insumo
         if insumo == "Fertilizante":
             print(
                 f"\nCultura {cultura} cadastrada com sucesso! Área: {area:.2f} m², Insumo: {insumo}, Aplicação: {aplicacao_total / 1000:.2f} litros, sendo 500 mL/m²")
@@ -84,7 +79,6 @@ while True:
                 f"\nCultura {cultura} cadastrada com sucesso! Área: {area:.2f} m², Insumo: {insumo}, Aplicação: {aplicacao_total / 1000:.2f} litros, sendo 250 mL/m²")
 
     elif opcao == "2":
-        # Exibir Dados
         if not culturas:
             print("Nenhuma cultura cadastrada.")
         else:
@@ -98,7 +92,6 @@ while True:
                         f"{i + 1} - Cultura: {culturas[i]}, Área: {areas[i]:.2f} m², Insumo: {insumos[i]}, Aplicação: {taxa_aplicacao[i] / 1000:.2f} litros, sendo 250 mL/m²")
 
     elif opcao == "3":
-        # Atualizar informações
         if not culturas:
             print("Nenhuma cultura cadastrada para atualizar.")
         else:
@@ -106,7 +99,6 @@ while True:
             for i in range(len(culturas)):
                 print(f"{i + 1} - Cultura: {culturas[i]}, Área: {areas[i]:.2f} m², Insumo: {insumos[i]}")
 
-            # Escolher a cultura para atualizar
             indice = int(input("Escolha o número da cultura a ser atualizada: ")) - 1
 
             if 0 <= indice < len(culturas):
@@ -116,54 +108,51 @@ while True:
                 opcao_atualizar = input("Digite o número correspondente: ")
 
                 if opcao_atualizar == "1":
-                    # Atualizar área
                     tipo_area = input(
                         "Escolha o formato da nova área plantada (1 - Retângulo, 2 - Círculo, 3 - Trapézio): ")
-                    if tipo_area == "1":  # Retângulo
+                    if tipo_area == "1":
                         largura = float(input("Digite a nova largura do terreno (m): "))
                         comprimento = float(input("Digite o novo comprimento do terreno (m): "))
-                        area = largura * comprimento  # Cálculo da nova área do retângulo
-                    elif tipo_area == "2":  # Círculo
+                        area = largura * comprimento
+                    elif tipo_area == "2":
                         raio = float(input("Digite o novo raio do terreno (m): "))
-                        area = math.pi * (raio ** 2)  # Cálculo da nova área do círculo
-                    elif tipo_area == "3":  # Trapézio
+                        area = math.pi * (raio ** 2)
+                    elif tipo_area == "3":
                         base_maior = float(input("Digite a nova base maior (m): "))
                         base_menor = float(input("Digite a nova base menor (m): "))
                         altura = float(input("Digite a nova altura (m): "))
-                        area = ((base_maior + base_menor) * altura) / 2  # Cálculo da nova área do trapézio
+                        area = ((base_maior + base_menor) * altura) / 2
                     else:
                         print("Opção inválida! Usando área 0.")
-                        area = 0  # Caso o usuário escolha uma opção inválida
+                        area = 0
 
-                    areas[indice] = area  # Atualizando a área na lista
+                    areas[indice] = area
                     aplicacao_total = area * (
-                        500 if insumos[indice] == "Fertilizante" else 250)  # Atualizando aplicação
-                    taxa_aplicacao[indice] = aplicacao_total  # Atualizando a taxa de aplicação
+                        500 if insumos[indice] == "Fertilizante" else 250)
+                    taxa_aplicacao[indice] = aplicacao_total
                     print(f"Área atualizada com sucesso! Nova área: {area:.2f} m².")
 
                 elif opcao_atualizar == "2":
-                    # Atualizar insumo
                     while True:
                         insumo_escolhido = input(
                             "Escolha o novo insumo (F - Fertilizante, P - Pesticida): ").strip().upper()
                         if insumo_escolhido == "F":
                             insumo = "Fertilizante"
-                            aplicacao_por_m2 = 500  # 500 mL/m² para fertilizante
+                            aplicacao_por_m2 = 500
                             break
                         elif insumo_escolhido == "P":
                             insumo = "Pesticida"
-                            aplicacao_por_m2 = 250  # 250 mL/m² para pesticida
+                            aplicacao_por_m2 = 250
                             break
                         else:
                             print("Opção inválida! Escolha F para Fertilizante ou P para Pesticida.")
 
-                    insumos[indice] = insumo  # Atualizando o insumo
-                    aplicacao_total = areas[indice] * aplicacao_por_m2  # Atualizando aplicação
-                    taxa_aplicacao[indice] = aplicacao_total  # Atualizando a taxa de aplicação
+                    insumos[indice] = insumo
+                    aplicacao_total = areas[indice] * aplicacao_por_m2
+                    taxa_aplicacao[indice] = aplicacao_total
                     print(f"Insumo atualizado com sucesso! Novo insumo: {insumo}.")
 
     elif opcao == "4":
-        # Excluir dados
         if not culturas:
             print("Nenhuma cultura cadastrada para excluir.")
         else:
@@ -171,11 +160,9 @@ while True:
             for i in range(len(culturas)):
                 print(f"{i + 1} - Cultura: {culturas[i]}, Área: {areas[i]:.2f} m², Insumo: {insumos[i]}")
 
-            # Escolher a cultura para excluir
             indice = int(input("Escolha o número da cultura a ser excluída: ")) - 1
 
             if 0 <= indice < len(culturas):
-                # Remover o item selecionado
                 culturas.pop(indice)
                 areas.pop(indice)
                 insumos.pop(indice)
@@ -183,7 +170,7 @@ while True:
                 print("Cultura excluída com sucesso.")
             else:
                 print("Número inválido! Nenhuma cultura foi excluída.")
-    elif opcao == "6":
+    elif opcao == "5":
         print("Saindo do programa...")
         break
     else:
